@@ -5,7 +5,17 @@ const express = require ('express');
 
 const app = express();
 
-app.use((req, res, next) => {
+app.use('/', (req,res,next) => {
+    console.log('this always run');
+    next();
+});
+
+app.use('/add-product', (req, res, next) => {
+    console.log('add-product');
+    res.status(200).send('<h1>Add-Product!!</h1>')
+});
+
+app.use('/', (req, res, next) => {
     console.log('First middleware');
     next();//next allow the request to continue to the middleware 
 });
